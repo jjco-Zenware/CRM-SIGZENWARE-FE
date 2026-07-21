@@ -1,0 +1,37 @@
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.kpi-card { position: relative; display: flex; flex-direction: column; gap: .35rem; overflow: hidden; min-width: 0; }
+.kpi-label { color: var(--crm-text-muted); font-size: .85rem; }
+.kpi-value { font-size: 1.6rem; font-weight: 700; }
+.kpi-icon { position: absolute; right: 1rem; top: 1rem; font-size: 1.8rem; opacity: .25; }
+.chart-card h3 { margin-top: 0; }
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ganadas-perdidas-resumen {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-top: 1rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--crm-border);
+
+  > div { display: flex; flex-direction: column; gap: .15rem; text-align: center; flex: 1; }
+}
+
+.resumen-label { font-size: .75rem; color: var(--crm-text-muted); }
+.resumen-value { font-size: 1rem; font-weight: 700; }
+.resumen-value.ganada { color: var(--crm-success); }
+.resumen-value.perdida { color: var(--crm-danger); }

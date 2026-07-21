@@ -1,0 +1,50 @@
+<app-page-header title="Dashboard" subtitle="Resumen general del CRM"></app-page-header>
+
+<div class="kpi-grid">
+  <div class="erp-card kpi-card">
+    <span class="kpi-label">Oportunidades abiertas</span>
+    <span class="kpi-value">{{ kpis?.oportunidadesAbiertas ?? 0 }}</span>
+    <i class="pi pi-briefcase kpi-icon" style="color:var(--crm-accent)"></i>
+  </div>
+  <div class="erp-card kpi-card">
+    <span class="kpi-label">Valor del pipeline</span>
+    <span class="kpi-value">{{ (kpis?.valorPipeline ?? 0) | number:'1.2-2' }}</span>
+    <i class="pi pi-dollar kpi-icon" style="color:var(--crm-success)"></i>
+  </div>
+  <div class="erp-card kpi-card">
+    <span class="kpi-label">Acciones pendientes</span>
+    <span class="kpi-value">{{ kpis?.accionesPendientes ?? 0 }}</span>
+    <i class="pi pi-check-square kpi-icon" style="color:var(--crm-warning)"></i>
+  </div>
+  <div class="erp-card kpi-card">
+    <span class="kpi-label">Metas cumplidas</span>
+    <span class="kpi-value">{{ (kpis?.metasCumplidasPorcentaje ?? 0) | number:'1.0-0' }}%</span>
+    <i class="pi pi-chart-line kpi-icon" style="color:var(--crm-accent-dark)"></i>
+  </div>
+</div>
+
+<div class="charts-row">
+  <div class="erp-card chart-card">
+    <h3>Valor de oportunidades por estado</h3>
+    <p-chart type="bar" [data]="chartData" [options]="chartOptions" height="320px" *ngIf="chartData"></p-chart>
+  </div>
+
+  <div class="erp-card chart-card">
+    <h3>Oportunidades ganadas vs perdidas</h3>
+    <p-chart type="doughnut" [data]="ganadasPerdidasChartData" [options]="ganadasPerdidasChartOptions" height="240px" *ngIf="ganadasPerdidasChartData"></p-chart>
+    <div class="ganadas-perdidas-resumen" *ngIf="ganadasVsPerdidas">
+      <div>
+        <span class="resumen-label">Valor ganado</span>
+        <span class="resumen-value ganada">{{ ganadasVsPerdidas.ganadas.valor | number:'1.2-2' }}</span>
+      </div>
+      <div>
+        <span class="resumen-label">Valor perdido</span>
+        <span class="resumen-value perdida">{{ ganadasVsPerdidas.perdidas.valor | number:'1.2-2' }}</span>
+      </div>
+      <div>
+        <span class="resumen-label">Tasa de éxito</span>
+        <span class="resumen-value">{{ tasaExito | number:'1.0-0' }}%</span>
+      </div>
+    </div>
+  </div>
+</div>

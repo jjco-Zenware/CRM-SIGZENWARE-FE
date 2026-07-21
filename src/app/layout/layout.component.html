@@ -1,0 +1,9 @@
+<app-sidebar [collapsed]="collapsed"></app-sidebar>
+
+<div class="erp-content" [class.collapsed]="collapsed">
+  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+  <main class="erp-page">
+    <app-breadcrumb></app-breadcrumb>
+    <router-outlet></router-outlet>
+  </main>
+</div>

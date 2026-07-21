@@ -1,0 +1,29 @@
+<app-page-header title="Gestión de Acciones" subtitle="Cambio de estado de llamadas, reuniones y tareas"></app-page-header>
+
+<app-data-table
+  title="Listado de acciones"
+  [columns]="columns"
+  [data]="data"
+  [totalRecords]="total"
+  [loading]="loading"
+  [rows]="query.pageSize || 10"
+  [showNewButton]="false"
+  [actionsTemplate]="estadoAction"
+  (pageChange)="onPageChange($event)"
+  (search)="onSearch($event)"
+  (sort)="onSort($event)"
+  (exportExcel)="exportExcel()"
+  (exportPdf)="exportPdf()"
+></app-data-table>
+
+<ng-template #estadoAction let-row>
+  <button
+    pButton
+    type="button"
+    icon="pi pi-sync"
+    label="Cambiar estado"
+    class="p-button-outlined p-button-sm"
+    (click)="menu.toggle($event)"
+  ></button>
+  <p-menu #menu [popup]="true" [model]="buildEstadoMenu(row)" appendTo="body"></p-menu>
+</ng-template>

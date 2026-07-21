@@ -1,0 +1,13 @@
+<header class="erp-navbar">
+  <button pButton icon="pi pi-bars" class="p-button-text p-button-plain" (click)="toggleSidebar.emit()"></button>
+  <div class="spacer"></div>
+  <button pButton icon="pi pi-bell" class="p-button-text p-button-plain" pTooltip="Notificaciones"></button>
+  <div class="user-menu" *ngIf="user$ | async as user">
+    <p-avatar [label]="initials(user)" shape="circle" style="background:var(--crm-accent); color:#fff"></p-avatar>
+    <div class="user-info">
+      <span class="user-name">{{ user.nombre }}</span>
+      <span class="user-role">{{ user.rol }}</span>
+    </div>
+    <button pButton icon="pi pi-sign-out" class="p-button-text p-button-plain" pTooltip="Cerrar sesión" (click)="logout()"></button>
+  </div>
+</header>

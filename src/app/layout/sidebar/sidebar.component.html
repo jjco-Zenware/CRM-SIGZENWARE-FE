@@ -1,0 +1,38 @@
+<aside class="erp-sidebar" [class.collapsed]="collapsed">
+  <div class="brand">
+    <i class="pi pi-compass brand-icon"></i>
+    <span class="brand-text" *ngIf="!collapsed">CRM Empresarial</span>
+  </div>
+
+  <nav class="menu">
+    <ng-container *ngFor="let item of menu">
+      <a *ngIf="!item.children"
+         [routerLink]="item.route"
+         routerLinkActive="active"
+         class="menu-item">
+        <i [class]="item.icon"></i>
+        <span *ngIf="!collapsed">{{ item.label }}</span>
+      </a>
+
+      <ng-container *ngIf="item.children">
+        <a class="menu-item"
+           role="button"
+           tabindex="0"
+           [class.active]="isChildActive(item)"
+           (click)="onParentClick(item)">
+          <i [class]="item.icon"></i>
+          <span *ngIf="!collapsed" class="menu-item-label">{{ item.label }}</span>
+        </a>
+        <div class="submenu" *ngIf="!collapsed">
+          <a *ngFor="let child of item.children"
+             [routerLink]="child.route"
+             routerLinkActive="active"
+             class="menu-item submenu-item">
+            <i [class]="child.icon"></i>
+            <span>{{ child.label }}</span>
+          </a>
+        </div>
+      </ng-container>
+    </ng-container>
+  </nav>
+</aside>

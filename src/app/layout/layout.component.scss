@@ -1,0 +1,7 @@
+.erp-content {
+  margin-left: var(--crm-sidebar-w);
+  transition: margin-left .2s ease;
+  min-height: 100vh;
+
+  &.collapsed { margin-left: var(--crm-sidebar-w-collapsed); }
+}

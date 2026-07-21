@@ -1,0 +1,61 @@
+<app-page-header [title]="pageTitle" [subtitle]="pageSubtitle"></app-page-header>
+
+<app-data-table
+  title="Listado de oportunidades"
+  [columns]="columns"
+  [data]="data"
+  [totalRecords]="total"
+  [loading]="loading"
+  [rows]="query.pageSize || 10"
+  [showNewButton]="!readOnly"
+  [showActionsColumn]="!readOnly"
+  (pageChange)="onPageChange($event)"
+  (search)="onSearch($event)"
+  (sort)="onSort($event)"
+  (newItem)="openNew()"
+  (editItem)="openEdit($event)"
+  (deleteItem)="remove($event)"
+  (exportExcel)="exportExcel()"
+  (exportPdf)="exportPdf()"
+></app-data-table>
+
+<p-dialog [(visible)]="dialogVisible" [modal]="true" [style]="{width: '34rem'}" [header]="editing ? 'Editar oportunidad' : 'Nueva oportunidad'">
+  <form [formGroup]="form" class="form-grid">
+    <div class="field">
+      <label>Nombre de la oportunidad</label>
+      <input pInputText formControlName="nombre" />
+    </div>
+    <div class="field">
+      <label>Cliente</label>
+      <input pInputText formControlName="cliente" />
+    </div>
+    <div class="field">
+      <label>Responsable</label>
+      <input pInputText formControlName="responsable" />
+    </div>
+    <div class="field">
+      <label>Estado</label>
+      <p-dropdown [options]="estados" formControlName="estado" optionLabel="label" optionValue="value" placeholder="Seleccione"></p-dropdown>
+    </div>
+    <div class="field">
+      <label>Probabilidad (%)</label>
+      <p-inputNumber formControlName="probabilidad" [min]="0" [max]="100" suffix="%"></p-inputNumber>
+    </div>
+    <div class="field">
+      <label>Valor</label>
+      <p-inputNumber formControlName="valor" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+    </div>
+    <div class="field">
+      <label>Fecha de cierre estimada</label>
+      <p-calendar formControlName="fechaCierreEstimada" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="field switch-field col-2">
+      <label>Activo</label>
+      <p-inputSwitch formControlName="activo"></p-inputSwitch>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancelar" class="p-button-text" (click)="dialogVisible=false"></button>
+    <button pButton label="Guardar" icon="pi pi-check" (click)="save()"></button>
+  </ng-template>
+</p-dialog>

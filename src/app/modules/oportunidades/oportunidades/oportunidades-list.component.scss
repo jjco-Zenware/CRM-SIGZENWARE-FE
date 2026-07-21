@@ -1,0 +1,6 @@
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.col-2 { grid-column: span 2; }
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field label { font-size: .82rem; font-weight: 600; }
+.field ::ng-deep .p-dropdown, .field ::ng-deep .p-inputnumber, .field ::ng-deep .p-calendar { width: 100%; }
+.switch-field { flex-direction: row; align-items: center; gap: .6rem; }

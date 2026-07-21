@@ -1,0 +1,157 @@
+// ============================================================
+// CRM Empresarial - Estilos globales
+// ============================================================
+:root {
+  --crm-sidebar-bg: #241b3a;
+  --crm-sidebar-bg-hover: #2f2449;
+  --crm-sidebar-text: #cec4e0;
+  --crm-sidebar-text-active: #ffffff;
+  --crm-accent: #7c3aed;
+  --crm-accent-dark: #5b21b6;
+  --crm-bg: #f5f4f9;
+  --crm-surface: #ffffff;
+  --crm-border: #e5e1ee;
+  --crm-text: #201a2b;
+  --crm-text-muted: #6b6478;
+  --crm-success: #16a34a;
+  --crm-danger: #dc2626;
+  --crm-warning: #d97706;
+  --crm-radius: 8px;
+  --crm-navbar-h: 60px;
+  --crm-sidebar-w: 260px;
+  --crm-sidebar-w-collapsed: 70px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 13px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--crm-bg);
+  color: var(--crm-text);
+}
+
+.erp-page { padding: 1.5rem; }
+
+.erp-card {
+  background: var(--crm-surface);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  padding: 1.25rem;
+}
+
+.erp-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+
+.erp-filters { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.erp-actions { display: flex; gap: .5rem; }
+
+// ------------------------------------------------------------
+// Controles compactos (tablas, botones, inputs y demás campos)
+// ------------------------------------------------------------
+.p-datatable .p-datatable-thead > tr > th {
+  background: #faf9fc;
+  color: var(--crm-text-muted);
+  font-weight: 600;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: .45rem .6rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  font-size: .8rem;
+  padding: .4rem .6rem;
+}
+
+.p-button {
+  font-size: .8rem;
+  padding: .4rem .75rem;
+}
+
+.p-button.p-button-sm {
+  font-size: .75rem;
+  padding: .3rem .55rem;
+}
+
+.p-datatable .p-button {
+  font-size: .72rem;
+  padding: .25rem .45rem;
+}
+
+.p-button.p-button-icon-only,
+.p-datatable .p-button.p-button-icon-only {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+}
+
+.p-button.p-button-icon-only .p-button-icon,
+.p-datatable .p-button.p-button-icon-only .p-button-icon {
+  font-size: .75rem;
+}
+
+.p-inputtext,
+.p-dropdown .p-dropdown-label,
+.p-multiselect .p-multiselect-label,
+.p-calendar .p-inputtext,
+.p-inputnumber-input {
+  font-size: .8rem;
+  padding: .4rem .6rem;
+}
+
+.p-dropdown,
+.p-multiselect {
+  min-height: unset;
+}
+
+.p-checkbox,
+.p-checkbox .p-checkbox-box {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.p-paginator {
+  font-size: .8rem;
+  padding: .4rem;
+}
+
+.p-paginator .p-paginator-element {
+  min-width: 1.85rem;
+  height: 1.85rem;
+}
+
+.p-dialog .p-dialog-header {
+  padding: .9rem 1.25rem;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.p-dialog .p-dialog-title {
+  font-size: 1rem;
+}
+
+.status-badge {
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  &.active { background: #dcfce7; color: var(--crm-success); }
+  &.inactive { background: #fee2e2; color: var(--crm-danger); }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }

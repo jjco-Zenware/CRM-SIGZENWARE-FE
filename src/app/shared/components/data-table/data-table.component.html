@@ -1,0 +1,72 @@
+<div class="erp-card">
+  <div class="erp-toolbar">
+    <h3 class="table-title">{{ title }}</h3>
+    <div class="erp-filters">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          placeholder="Buscar..."
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="onSearch()"
+        />
+      </span>
+      <button pButton icon="pi pi-filter-slash" class="p-button-outlined" (click)="searchTerm=''; onSearch()" pTooltip="Limpiar filtros"></button>
+    </div>
+    <div class="erp-actions">
+      <button pButton icon="pi pi-file-excel" class="p-button-success p-button-outlined" pTooltip="Exportar Excel" (click)="exportExcel.emit()"></button>
+      <button pButton icon="pi pi-file-pdf" class="p-button-danger p-button-outlined" pTooltip="Exportar PDF" (click)="exportPdf.emit()"></button>
+      <button *ngIf="showNewButton" pButton icon="pi pi-plus" label="Nuevo" class="p-button-primary" (click)="newItem.emit()"></button>
+    </div>
+  </div>
+
+  <p-table
+    [value]="data"
+    [columns]="columns"
+    [lazy]="true"
+    (onLazyLoad)="onLazyLoad($event)"
+    [paginator]="true"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.sortable ? col.field : undefined">
+          {{ col.header }}
+          <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
+        </th>
+        <th *ngIf="showActionsColumn" style="width: 8rem">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          <span *ngIf="col.type !== 'badge'">{{ fieldValue(row, col.field) }}</span>
+          <span *ngIf="col.type === 'badge'" class="status-badge" [ngClass]="fieldValue(row, col.field) ? 'active' : 'inactive'">
+            {{ fieldValue(row, col.field) ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td *ngIf="showActionsColumn">
+          <ng-container *ngIf="actionsTemplate; else defaultActions">
+            <ng-container *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"></ng-container>
+          </ng-container>
+          <ng-template #defaultActions>
+            <button pButton icon="pi pi-pencil" class="p-button-text p-button-sm" (click)="editItem.emit(row)" pTooltip="Editar"></button>
+            <button pButton icon="pi pi-trash" class="p-button-text p-button-danger p-button-sm" (click)="deleteItem.emit(row)" pTooltip="Eliminar"></button>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td [attr.colspan]="columns.length + (showActionsColumn ? 1 : 0)" class="text-center py-4">
+          Sin registros para mostrar.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
